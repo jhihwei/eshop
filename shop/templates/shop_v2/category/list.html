@@ -1,0 +1,29 @@
+{% extends "shop_v2/base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Product Catagories Area Start -->
+    <div class="products-catagories-area clearfix">
+        <div class="amado-pro-catagory clearfix">
+            <!-- Single Catagory -->
+            {% for c in categories %}
+            <div class="single-products-catagory clearfix">
+                <a href="{{ c.get_absolute_url }}">
+                    <img class="category-img" src="{{c.image.url}}" alt="">
+                    <!-- Hover Content -->
+                    <div class="hover-content">
+                        <div class="line"></div>
+                        <p>{{c.sub_title}}</p>
+                        <h4>{{ c.name }}</h4>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Product Catagories Area End -->
+</div>
+<!-- ##### Main Content Wrapper End ##### -->
+
+{% endblock %}

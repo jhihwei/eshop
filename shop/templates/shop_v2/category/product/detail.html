@@ -1,0 +1,109 @@
+{% extends "shop_v2/base.html" %}
+{% load static %}
+{% block title %}
+{% if category %}{{ category.title }}{% else %}大能酵素商城{% endif %}
+{% endblock %}
+{% block content %}
+<!-- Product Details Area Start -->
+<div class="single-product-area section-padding-100 clearfix">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-12 d-flex flex-row">
+                <div class="single_product_thumb p-2">
+                    <div id="product_details_slider" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <a class="gallery_img" href="#">
+                                    <img class="d-block img-fluid img-thumbnail product-detail-image"
+                                        src="{{ product.image.url }}" alt="First slide">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="single_product_desc">
+                    <!-- Product Meta Data -->
+                    <div class="product-meta-data">
+                        <div class="line"></div>
+                        <p class="product-price">NT${{product.price}}</p>
+                        <a href="product-details.html">
+                            <h6>{{product.name}}</h6>
+                        </a>
+                        <!-- Ratings & Review -->
+                        <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
+                            <div class="ratings">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <!-- Avaiable -->
+                        {% if product.stock > 0 %}
+                        <p class="avaibility"><i class="fa fa-circle"></i> 有現貨</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="short_overview my-5">
+                        <ul class="nav nav-tabs col-md-4 col-11" id="product-detail-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#overview" role="tab"
+                                    aria-controls="overview" aria-selected="true">商品特色</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#description" role="tab"
+                                    aria-controls="description" aria-selected="false">詳細資訊</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#specifications" role="tab"
+                                    aria-controls="specifications" aria-selected="false">商品規格</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="product-detail-tab-content">
+                            <div class="tab-pane fade show active" id="overview" role="tabpanel"
+                                aria-labelledby="overview-tab">
+                                {{product.overview|safe}}
+                            </div>
+                            <div class="tab-pane fade" id="description" role="tabpanel"
+                                aria-labelledby="specifications-tab">
+                                {{product.description|safe}}
+                            </div>
+                            <div class="tab-pane fade" id="specifications" role="tabpanel"
+                                aria-labelledby="pecifications-tab">
+                                {{product.specifications|safe}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add to Cart Form -->
+                    <form class="cart clearfix" action="{% url 'cart:cart_add' product.id %}" method="post">
+                        {% csrf_token %}
+                        <div class="cart-btn d-flex mb-50">
+                            <p>數量</p>
+                            <div class="quantity">
+                                <span class="qty-minus"
+                                    onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
+                                        class="fa fa-caret-down" aria-hidden="true"></i></span>
+                                <input type="number" class="qty-text" id="qty" step="1" min="1" max="300"
+                                    name="quantity" value="1">
+                                <span class="qty-plus"
+                                    onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
+                                        class="fa fa-caret-up" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                        <button type="submit" name="addtocart" value="5" class="btn amado-btn">加入購物車</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Product Details Area End -->
+{% endblock %}
+
+{% block js_script %}
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'shop_v2/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block title %} 結帳 {% endblock %}
+{% block content %}
+<style>
+</style>
+<div class="cart-table-area section-padding-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="checkout_details_area mt-50 clearfix">
+                <div class="cart-title">
+                    <h2>配送資料</h2>
+                </div>
+                <form action="." method="post">
+                {% csrf_token %}
+                    <div class="col-md-12 col-12 col-lg-12">
+                        <div class="row">
+                            <div <div class="col-12 col-md-6 mb-3">
+                                <input type="text" class="form-control" id="name" name="name" value="" placeholder="性名" required>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" id="postal_code" name="postal_code" placeholder="郵遞區號" value="">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="text" class="form-control" id="city" name="city" placeholder="城市/縣" value="">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="text" class="form-control mb-3" id="address" name="address" placeholder="地址"
+                                    value="">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="number" class="form-control" id="phone_number" name="phone_number" min="0" placeholder="手機號碼"
+                                    value="">
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <textarea name="comment" class="form-control w-100" id="comment" name="comment" cols="30" rows="10"
+                                    placeholder="您可以在此留下備註"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-12 col-lg-12">
+                        <div class="cart-summary">
+                            <h5>購物車總計</h5>
+                            <ul class="summary-table">
+                                <li><span>小計:</span> <span>NTD$ {{ cart.get_total_price }}</span></li>
+                                <li><span>運費:</span> <span>NTD$ 60</span></li>
+                                <li><span>總計:</span> <span>NTD$
+                                        {{ cart.get_total_price_and_shipping_fee }}</span></li>
+                            </ul>
+                            <div class="cart-btn mt-100">
+                                <button type='submit' class="btn amado-btn w-100">結帳</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

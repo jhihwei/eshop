@@ -1,0 +1,33 @@
+.category-img {
+    width: 50%;
+    height: auto;
+    margin-top: 170px;
+}
+
+.img-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.cart-header {
+    margin-top: 2em;
+}
+
+.product-detail-image{
+    width:300px
+}
+
+@media only screen and (max-width: 767px) {
+    .single-product-wrapper .center {
+        
+    }
+  }
